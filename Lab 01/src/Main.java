@@ -4,12 +4,12 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         // Create rider and driver
-        Rider rider = new Rider("Alice");
-        Driver driver = new Driver("Bob");
+        Rider rider = new Rider("Mahmud");
+        Driver driver = new Driver("Mahin");
 
         // Create a trip using the RideTypeFactory
-        RideType rideType = RideTypeFactory.createRideType("Luxury");
-        Trip trip = new Trip("1", "123 Main St", "456 Elm St", rideType, rider, driver, 10.0, 14.0);
+        RideType rideType = RideTypeFactory.createRideType("bike");
+        Trip trip = new Trip("1", "Uttara", "Board Bazar", rideType, rider, driver, 10.0, 8.0);
 
         // Add notifications
         trip.addNotificationObserver(rider);
