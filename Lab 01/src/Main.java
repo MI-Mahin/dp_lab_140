@@ -1,13 +1,34 @@
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        // Create rider and driver
+        Rider rider = new Rider("Alice");
+        Driver driver = new Driver("Bob");
 
-        System.out.printf("Hello and welcome!");
+        // Create a trip using the RideTypeFactory
+        RideType rideType = RideTypeFactory.createRideType("Luxury");
+        Trip trip = new Trip("1", "123 Main St", "456 Elm St", rideType, rider, driver, 10.0, 14.0);
 
-        for (int i = 1; i <= 5; i++) {
+        // Add notifications
+        trip.addNotificationObserver(rider);
+        trip.addNotificationObserver(driver);
 
-            System.out.println("i = " + i);
-        }
+        // Start and complete the trip
+        trip.startTrip();
+        trip.completeTrip();
+
+        // Handle payment
+        PaymentMethod paymentMethod = new CreditCardPayment();
+        paymentMethod.processPayment(trip.getFare());
+
+        // Admin management
+        Admin admin = Admin.getInstance();
+        List<Trip> trips = new ArrayList<>();
+        trips.add(trip);
+        admin.manageDriver(driver);
+        admin.manageRider(rider);
+        admin.viewTripHistory(trips);
     }
 }
