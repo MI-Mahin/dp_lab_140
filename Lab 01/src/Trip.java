@@ -1,3 +1,6 @@
+import java.util.List;       // Import the List interface
+import java.util.ArrayList;  // Import the ArrayList class
+
 class Trip {
     private String id;
     private String pickupLocation;
@@ -9,7 +12,8 @@ class Trip {
     private String status;
     private Rider rider;
     private Driver driver;
-    private NotificationService notificationService;
+    private List<NotificationObserver> observers; // List to hold observers
+    private PaymentMethod paymentMethod;
 
     public Trip(String id, String pickupLocation, String dropOffLocation, RideType rideType, Rider rider, Driver driver, double distance, double timeOfDay) {
         this.id = id;
@@ -21,26 +25,17 @@ class Trip {
         this.distance = distance;
         this.timeOfDay = timeOfDay;
         this.status = "Pending";
-        this.notificationService = new NotificationService();
+        this.observers = new ArrayList<>(); // Initialize the ArrayList
+        this.paymentMethod = rider.getSelectedPaymentMethod(); // Set payment method from rider
     }
 
+    // Getter methods for accessing private fields
     public String getPickupLocation() {
         return pickupLocation;
     }
 
     public String getDropOffLocation() {
         return dropOffLocation;
-    }
-
-    public void startTrip() {
-        this.status = "Started";
-        notificationService.notifyObservers("Trip started from " + pickupLocation);
-    }
-
-    public void completeTrip() {
-        this.fare = rideType.calculateFare(distance, timeOfDay);
-        this.status = "Completed";
-        notificationService.notifyObservers("Trip completed at " + dropOffLocation + ". Fare: " + fare);
     }
 
     public double getFare() {
@@ -51,7 +46,51 @@ class Trip {
         return status;
     }
 
+    public RideType getRideType() {
+        return rideType;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public double getTimeOfDay() {
+        return timeOfDay;
+    }
+
+    public void setPaymentMethod(PaymentMethod paymentMethod) {
+        this.paymentMethod = paymentMethod;
+        System.out.println("Payment method updated to: " + paymentMethod.getClass().getSimpleName());
+    }
+
+    public void startTrip() {
+        this.status = "Started";
+        notifyObservers("Trip started from " + pickupLocation);
+    }
+
+    public void completeTrip() {
+        this.fare = rideType.calculateFare(distance, timeOfDay);
+        this.status = "Completed";
+        notifyObservers("Trip completed at " + dropOffLocation + ". Fare: " + fare);
+    }
+
+    public void processPayment() {
+        if (paymentMethod != null) {
+            paymentMethod.processPayment(fare);
+        } else {
+            System.out.println("No payment method selected.");
+        }
+    }
+
+    // Method to add observers (Rider, Driver, etc.)
     public void addNotificationObserver(NotificationObserver observer) {
-        notificationService.addObserver(observer);
+        observers.add(observer);
+    }
+
+    // Method to notify all observers of an event
+    private void notifyObservers(String event) {
+        for (NotificationObserver observer : observers) {
+            observer.update(event);
+        }
     }
 }
