@@ -41,8 +41,8 @@ public class Main {
             System.out.println("Encrypted data saved to " + filePath + ".enc");
 
             // Decrypt the file content
-            String decryptedData = context.decrypt(encryptedData);
-            System.out.println("Decrypted data: " + decryptedData);
+            //String decryptedData = context.decrypt(encryptedData);
+            //System.out.println("Decrypted data: " + decryptedData);
         } catch (Exception e) {
             e.printStackTrace();
         }
