@@ -7,3 +7,5 @@
 ## Lab 04: IUTBeans
 
 ## Lab 05: Bundlers
+
+## Lab 06: NotifiDapters
