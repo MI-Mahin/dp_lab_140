@@ -9,3 +9,5 @@
 ## Lab 05: Bundlers
 
 ## Lab 06: NotifiDapters
+
+## Lab 07: SoGossip
