@@ -11,3 +11,9 @@
 ## Lab 06: NotifiDapters
 
 ## Lab 07: SoGossip
+
+## Lab 08: FindWeather
+
+## Lab 09: 
+
+## Lab 10: Bank Account 
