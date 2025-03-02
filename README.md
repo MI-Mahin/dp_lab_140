@@ -14,6 +14,6 @@
 
 ## Lab 08: FindWeather
 
-## Lab 09: 
+## Lab 09: Modification of Lab 08
 
 ## Lab 10: Bank Account 
