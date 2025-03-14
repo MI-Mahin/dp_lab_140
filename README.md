@@ -18,4 +18,6 @@
 
 ## Lab 10: Bank Account 
 
-## Lab 11: Smart Home System Project
+## Lab 11: Smart Home System Project 
+
+## lab 12: Text Editor
