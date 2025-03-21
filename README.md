@@ -20,4 +20,6 @@
 
 ## Lab 11: Smart Home System Project 
 
-## lab 12: Text Editor
+## Lab 12: Text Editor
+
+## Lab Final: Task Manager
